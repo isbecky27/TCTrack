@@ -43,9 +43,11 @@ export PYTHONPATH={path_to_TCTrack_folder}/TCTrack/pysot:$PYTHONPATH
 ## 2. Test
 
 ### (a) TCTrack
-Download pretrained model by [Baidu](https://pan.baidu.com/s/1jSAcHY9OfarVlxKjOCrVEw) （code: 2u1l) or [Googledrive](https://drive.google.com/file/d/1nWRfvAEcSduR9A4W5MpyZBjp0SCjvmNk/view?usp=sharing) and put it into `tools/snapshot` directory.
+Download pretrained model by [Baidu](https://pan.baidu.com/s/1jSAcHY9OfarVlxKjOCrVEw) (code:2u1l) or [Googledrive](https://drive.google.com/file/d/1nWRfvAEcSduR9A4W5MpyZBjp0SCjvmNk/view?usp=sharing) and put it into `tools/snapshot` directory.
 
-Download testing datasets and put them into `test_dataset` directory. 
+Download testing datasets and put them into `test_dataset/{dataset}` directory:
+* [OTB100](http://cvlab.hanyang.ac.kr/tracker_benchmark/datasets.html) and [OTB100.json](https://drive.google.com/drive/folders/10cfXjwQQBQeu48XMf2xc_W1LucpistPI) (put both into `test_dataset/OTB100`)
+* [Other Single Object Tracking Dataset](https://github.com/StrangerZhang/pysot-toolkit/blob/master/README.md)
 
 ```bash 
 python ./tools/test.py                                
