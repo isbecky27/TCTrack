@@ -1,4 +1,4 @@
-# TCTrack: Temporal Contexts for Aerial Tracking （CVPR2022)
+# TCTrack: Temporal Contexts for Aerial Tracking（CVPR2022）
 
 [Ziang Cao](https://ziangcao0312.github.io/) and [Ziyuan Huang](https://huang-ziyuan.github.io/) and [Liang Pan](https://scholar.google.com/citations?user=lSDISOcAAAAJ&hl=zh-CN&authuser=1) and Shiwei Zhang and [Ziwei Liu](https://liuziwei7.github.io/) and [Changhong Fu](https://vision4robotics.github.io/authors/changhong-fu/)
 
@@ -49,8 +49,8 @@ Download testing datasets and put them into `test_dataset` directory.
 
 ```bash 
 python ./tools/test.py                                
-	--dataset OTB100                  
-    --tracker_name TCTrack
+        --dataset OTB100                  
+        --tracker_name TCTrack
 	--snapshot ./tools/snapshot/general_model.pth # pre-train model path
 ```
 The testing result will be saved in the `results/{dataset}/{tracker_name}` directory.
@@ -63,16 +63,16 @@ Download pretrained model by [baidu](https://pan.baidu.com/s/1aggubJ4F-YdMtEo7t0
 Download testing datasets and put them into `test_dataset` directory. 
 
 ```bash 
-python ./tools/test.py     # offline evaluation                       
+python ./tools/test.py                                # offline evaluation                       
 	--dataset OTB100                  
-    --tracker_name TCTrack++
+        --tracker_name TCTrack++
 	--snapshot ./tools/snapshot/general_model.pth # pre-train model path
 
 ```
 ```bash 
-python ./tools/test_rt.py     # online evaluation                       
+python ./tools/test_rt.py                             # online evaluation                       
 	--dataset OTB100                  
-    --tracker_name TCTrack++
+        --tracker_name TCTrack++
 	--snapshot ./tools/snapshot/general_model.pth # pre-train model path
 ```
 
@@ -92,7 +92,7 @@ Download the datasets：
 * [GOT-10K](http://got-10k.aitestunion.com/downloads)
 
 
-**Note:** `train_dataset/dataset_name/readme.md` has listed detailed operations about how to generate training datasets.
+**Note:** `train_dataset/{dataset}/readme.md` has listed detailed operations about how to generate training datasets.
 
 #### Train a model
 To train the TCTrack and TCTrack++ model, run `train.py` with the desired configs:
@@ -123,12 +123,12 @@ python train_tctrackpp.py
 ```
 
 ## 4. Offline Evaluation
-If you want to evaluate the results of our tracker, please put those results into  `results` directory.
+If you want to evaluate the results of our tracker, please put those results into `results` directory.
 ```
-python ./tools/eval.py 	                          \
+python ./tools/eval.py 	                  \
 	--tracker_path ./results          \ # result path
 	--dataset OTB100                  \ # dataset_name
-	--tracker_prefix TCTrack   # tracker_name
+	--tracker_prefix TCTrack            # tracker_name
 ```
 
 ## 5. Online Evaluation
@@ -137,21 +137,19 @@ If you want to evaluate the results of our tracker, please put the pkl files int
 
 ```
 #first step
-
-python rt_eva.py 	                          \
-	--raw_root ./tools/results_rt_raw/OTB100          \ # pkl path
-	--tar_root ./tools/results_rt/OTB100                  \ # output txt files for evaluation
-	--gtroot ./test_dataset/OTB100   # groundtruth of dataset
+python rt_eva.py 	                           \
+	--raw_root ./tools/results_rt_raw/OTB100   \ # pkl path
+	--tar_root ./tools/results_rt/OTB100       \ # output txt files for evaluation
+	--gtroot ./test_dataset/OTB100               # groundtruth of dataset
 ```
 
 ```
 # second step
 python eval.py 	                          \
-	--tracker_path ./results_rt          \ # result path
+	--tracker_path ./results_rt       \ # result path
 	--dataset OTB100                  \ # dataset_name
 	--tracker_prefix TCTrack++   # tracker_name
 ```
-
 
 **Note:** The code is implemented based on [pysot-toolkit](https://github.com/StrangerZhang/pysot-toolkit). We would like to express our sincere thanks to the contributors.
 
