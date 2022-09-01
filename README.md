@@ -23,10 +23,21 @@ The implementation of our online temporally adaptive convolution is based on [Ta
 
 
 ## 1. Environment setup
-This code has been tested on Ubuntu 18.04, Python 3.8.3, Pytorch 0.7.0/1.6.0, CUDA 10.2.
-Please install related libraries before running this code: 
+This code has been tested on Ubuntu 20.04, Python 3.8.3, Pytorch 1.12.1, CUDA 11.3.
+
+Install Pytorch: 
+```bash
+conda install pytorch==1.12.1 torchvision torchaudio cudatoolkit=11.3 -c pytorch
+```
+
+Install related libraries before running this code: 
 ```bash
 pip install -r requirement.txt
+```
+
+Add PySOT to your PYTHONPATH:
+```
+export PYTHONPATH={path_to_TCTrack_folder}/TCTrack/pysot:$PYTHONPATH
 ```
 
 ## 2. Test
@@ -40,9 +51,9 @@ Download testing datasets and put them into `test_dataset` directory.
 python ./tools/test.py                                
 	--dataset OTB100                  
     --tracker_name TCTrack
-	--snapshot snapshot/general_model.pth # pre-train model path
+	--snapshot ./tools/snapshot/general_model.pth # pre-train model path
 ```
-The testing result will be saved in the `results/dataset_name/tracker_name` directory.
+The testing result will be saved in the `results/{dataset}/{tracker_name}` directory.
 
 **Note:** The results of TCTrack can be [downloaded](https://pan.baidu.com/s/1-V4JbKvmVPm0aOKWTOQtyQ) (code:kh3e).
 
@@ -55,17 +66,17 @@ Download testing datasets and put them into `test_dataset` directory.
 python ./tools/test.py     # offline evaluation                       
 	--dataset OTB100                  
     --tracker_name TCTrack++
-	--snapshot snapshot/general_model.pth # pre-train model path
+	--snapshot ./tools/snapshot/general_model.pth # pre-train model path
 
 ```
 ```bash 
 python ./tools/test_rt.py     # online evaluation                       
 	--dataset OTB100                  
     --tracker_name TCTrack++
-	--snapshot snapshot/general_model.pth # pre-train model path
+	--snapshot ./tools/snapshot/general_model.pth # pre-train model path
 ```
 
-The testing result will be saved in the `results/dataset_name/tracker_name` directory.
+The testing result will be saved in the `results/{dataset}/{tracker_name}` directory.
 
 **Note:** The results of TCTrack++ can be [downloaded](https://drive.google.com/file/d/1TaolHsyOy_zIkm-MEEkMZuOtbr_NuUYC/view?usp=sharing) or [downloaded](https://pan.baidu.com/s/1v7ie10TmFDiWKoosTESXTw?pwd=3vyx) (code: 3vyx).
 
@@ -114,10 +125,10 @@ python train_tctrackpp.py
 ## 4. Offline Evaluation
 If you want to evaluate the results of our tracker, please put those results into  `results` directory.
 ```
-python eval.py 	                          \
+python ./tools/eval.py 	                          \
 	--tracker_path ./results          \ # result path
 	--dataset OTB100                  \ # dataset_name
-	--tracker_prefix 'general_model'   # tracker_name
+	--tracker_prefix TCTrack   # tracker_name
 ```
 
 ## 5. Online Evaluation
@@ -138,7 +149,7 @@ python rt_eva.py 	                          \
 python eval.py 	                          \
 	--tracker_path ./results_rt          \ # result path
 	--dataset OTB100                  \ # dataset_name
-	--trackers TCTrack++   # tracker_name
+	--tracker_prefix TCTrack++   # tracker_name
 ```
 
 
